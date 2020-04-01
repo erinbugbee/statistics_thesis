@@ -5,7 +5,7 @@ class MultiArmedBandit:
 
     def __init__(self, n):
         self.n = n
-        self.is_best = True
+        self.is_best = True # Whether the action is the best action (has the highest value)
 
     def reset_values(self):
         pass

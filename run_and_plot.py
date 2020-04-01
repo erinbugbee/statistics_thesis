@@ -12,6 +12,7 @@ def compare_epsilons(epsilons):
     # satisficer: epsilon = 0, complete exploitation
     rewards = np.zeros((len(epsilons), num_sessions, num_trials))
     num_best = np.zeros((len(epsilons), num_sessions, num_trials))
+    cum_reward = np.zeros((len(epsilons), len(epsilons)))
 
     for i in range(len(epsilons)):
         policy = EpsilonGreedyPolicy(epsilons[i])
@@ -38,6 +39,11 @@ def compare_epsilons(epsilons):
         plt.ylabel('Percent Best Option')
         plt.legend(loc="upper left")
     plt.show()
+
+    for i in range(len(epsilons)):
+        ave_reward = rewards[i, :, :].mean(axis=0)
+        cum_reward[i, :] = [epsilons[i], ave_reward.sum()]
+    print(cum_reward)
 
 def greedy_policy():
     rewards = np.zeros((len(epsilons), num_sessions, num_trials))
@@ -149,14 +155,10 @@ if __name__ == '__main__':
 
     # COMPARE EPSILONS FOR EPSILON GREEDY
     #epsilons = np.array((0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0))
-    # epsilons = np.array((0, 0.2, 0.4, 0.6, 0.8, 1))
+    #epsilons = np.array((0, 0.2, 0.4, 0.6, 0.8, 1))
     epsilons = np.array((0, 1))
-    #compare_epsilons(epsilons)
+    compare_epsilons(epsilons)
 
     # COMPARE N FOR EPSILON GREEDY
     #n_list = np.array((2, 5, 10, 20))
     #compare_n(n_list)
-
-    #run_bandit(epsilon, num_trials, num_sessions)
-
-    #greedy_policy()

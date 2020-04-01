@@ -3,7 +3,7 @@ import numpy as np
 
 class Agent:
     def __init__(self, n, policy, num_trials):
-        self.n = n
+        self.n = n #the number of options
         self.policy = policy
         self.num_trials = num_trials
         self.Q = np.zeros((self.n, self.num_trials))
@@ -34,6 +34,7 @@ class Agent:
                     self.learning_rate = (1 / self.num_attempts[a])
                 else:
                     self.learning_rate = self.fixed_LR_vec
+                # Update Q-value for that action at the next trial
                 self.Q[a, trial + 1] = self.Q[a, trial] + self.learning_rate * (reward - self.Q[a, trial])
             else:
                 self.Q[a, trial + 1] = self.Q[a, trial]
