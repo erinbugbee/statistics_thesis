@@ -26,8 +26,8 @@ class GaussianBandit:
         self.best_action = None # To store the option with the highest mean value
 
     def reset_values(self):
-        self.action_values = np.random.normal(self.mu, self.sigma, self.n)
-        self.best_action = np.argmax(self.action_values)
+        self.action_values = np.random.normal(self.mu, self.sigma, self.n) # Generates n normally distributed values
+        self.best_action = np.argmax(self.action_values) # The best action has the highest action value
 
     def pull_arm(self, action):
         # Observe the reward sampled from the Gaussian distribution

@@ -24,7 +24,7 @@ class Environment:
                 self.rewards[ses, trial] = reward
                 if trial != self.num_trials - 1:
                     self.agent.update_estimates(trial, chosen_action, reward)
-                if self.is_best:
+                if self.is_best: # Stores a 1 if the action was the best at ses, trial and a 0 otherwise
                     self.num_best[ses, trial] += 1
 
         return self.rewards, self.num_best

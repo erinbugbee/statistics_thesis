@@ -37,11 +37,13 @@ class EpsilonGreedyPolicy(Policy):
 
 
 class RandomPolicy(Policy):
+    # Chooses an option randomly
     def choose(self, agent, n):
         return np.random.choice(n)
 
 
 class SoftmaxEpsilonPolicy(Policy):
+    # Chooses an option according to Softmax-epsilon
     def choose(self, agent, n, invT):
         Q = agent.get_Q()
         Q = Q - max(Q)
